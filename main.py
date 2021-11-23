@@ -1,15 +1,15 @@
 import sys
 
-from PyQt5 import uic
+from UI import Ui_Form
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QWidget
 from random import randint
 
 
-class MyWidget(QWidget):
+class MyWidget(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.setFixedSize(400, 400)
         self.is_draw = False
         self.pushButton.move(250, 300)
@@ -29,7 +29,7 @@ class MyWidget(QWidget):
     def draw(self):
         a = randint(1, 100)
         x, y = randint(1, 400 - a), randint(1, 400 - a)
-        self.qp.setBrush(QColor('yellow'))
+        self.qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         self.qp.drawEllipse(x, y, a, a)
 
 
